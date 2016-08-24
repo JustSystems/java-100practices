@@ -1,0 +1,14 @@
+ol.list_parentheses{
+  padding:0 0 0 2em;
+  margin:0;
+}
+
+ol.list_parentheses li{
+  list-style-type:none;
+  list-style-position:inside;
+  counter-increment: cnt;
+}
+ol.list_parentheses li:before{
+  display: marker;
+  content: "(" counter(cnt) ") ";
+}
