@@ -5,7 +5,7 @@
 
 Javaを初めて使う方から中級者までをメインターゲットにしています。
 
-**コメント・ツッコミ・誤り訂正・回答例追加などなど、IssueやPull Requestを歓迎します！**
+**コメント・ツッコミ・誤り訂正・解答例追加などなど、IssueやPull Requestを歓迎します！**
 
 ## [目次](contents/toc.md)
 
@@ -34,23 +34,23 @@ Javaを初めて使う方から中級者までをメインターゲットにし�
 ├ README.md                         README(本書)
 ├ eula.txt                          使用許諾契約
 │
-└ contents/                         100本ノック設問および回答
+└ contents/                         100本ノック設問および解答
   ├ toc.md                          問題の目次
   │
   └ nnn/                            設問番号(001～100)
     ├ README.md                     問題
     ├ (問題のREADME.mdから参照される画像など；imagesなどディレクトリを作成してもOK)
     │
-    ├ answer/                       回答例(このディレクトリ配下はREADME.md以外自由)
-    │├ README.md                   回答の説明
-    │├ answernnn.bat               例：回答プログラム実行用batファイル(nnnは設問番号)
-    │├ answernnn.sh                例：回答プログラム実行用shファイル(nnnは設問番号)
+    ├ answer/                       解答例(このディレクトリ配下はREADME.md以外自由)
+    │├ README.md                   解答の説明
+    │├ answernnn.bat               例：解答プログラム実行用batファイル(nnnは設問番号)
+    │├ answernnn.sh                例：解答プログラム実行用shファイル(nnnは設問番号)
     │├ pom.xml                     例：Maven用定義ファイル
     │├ src/                        例：ソース
     │├ conf/                       例：コンフィグファイル
     │：
     │
-    └ test/                         回答が正しいことを確認するテスト(README.md以外自由)
+    └ test/                         解答が正しいことを確認するテスト(README.md以外自由)
       ├ README.md                   テストの説明
       ├ testnnn.bat                 例：テスト実行用batファイル(nnnは設問番号)
       ├ testnnn.sh                  例：テスト実行用shファイル(nnnは設問番号)
@@ -62,7 +62,7 @@ Javaを初めて使う方から中級者までをメインターゲットにし�
 
 ## 各ファイル共通の規定
 * ファイルの文字コードは UTF-8 とします。
-* 問題や回答に関係のない内容は含めないようにします。
+* 問題や解答に関係のない内容は含めないようにします。
 * .mdファイル のフォーマットは、 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/) 形式とします。
 
 ## 問題ファイルの規定
@@ -72,9 +72,9 @@ Javaを初めて使う方から中級者までをメインターゲットにし�
     2. 前の問題 へのリンク ([001](contents/001/README.md)ではリンクなし)
     3. 次の問題 へのリンク ([100](contents/100/README.md)ではリンクなし)
 
-## 回答ファイルの規定
+## 解答ファイルの規定
 
-* `README.md` に回答文書を記載します。
+* `README.md` に解答文書を記載します。
     * プログラムを実行するものについては実行方法をなるべく詳細に記述します。
     * 冒頭に 問題 へのリンクを設けることとします。
 * Javaコードのpackageはデフォルトとします。

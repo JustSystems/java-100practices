@@ -1,7 +1,7 @@
 [問題](../README.md)
 
 ***
-# 009：回答例
+# 009：解答例
 
 ```
 native2ascii -encoding UTF-8 変換前のファイル 変換後のファイル
