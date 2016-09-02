@@ -1,13 +1,13 @@
 import java.util.TimeZone;
 
 /**
- * 006のサンプル回答です。
+ * 006のサンプル解答です。
  *
  * @author jswaf
  */
 public class Answer006 {
     /**
-     * 006のサンプル回答です。
+     * 006のサンプル解答です。
      * @param arguments 使用しません。
      */
     public static void main(String[] arguments) {

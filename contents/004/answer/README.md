@@ -1,7 +1,7 @@
 [問題](../README.md)
 
 ***
-# 004：回答例
+# 004：解答例
 
 1. http://www.oracle.com/technetwork/java/javase/downloads/index.html にて最新バージョンを確認します。
 2. `java -version` コマンドを実行してインストールされているJava SEのバージョンを確認します。

@@ -1,7 +1,7 @@
 [問題](../README.md)
 
 ***
-# 001：回答例
+# 001：解答例
 
 1. http://www.oracle.com/technetwork/java/javase/downloads/index.html から最新バージョンのJDKをダウンロードします。
 2. ダウンロードしたJDKをインストールします。

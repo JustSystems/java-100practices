@@ -1,5 +1,5 @@
 [問題](../README.md)
-[回答](../answer/README.md)
+[解答](../answer/README.md)
 
 
 ***
