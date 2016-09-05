@@ -6,7 +6,7 @@
 ```java:Knock015.java
 public class Knock015 {
 
-    String str;
+    private String str;
 
     Knock015() {
         this("no name");
