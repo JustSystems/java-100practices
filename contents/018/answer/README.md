@@ -3,46 +3,33 @@
 ***
 # 018：解答例
 
-```java:EarthlyBranches.java
-public class Knock {
-    private enum EarthlyBranches {
-        NE("子", 1), USHI("丑", 2), TRA("寅", 3), U("卯", 4), TATSU("辰", 5), MI("巳", 6),
-        HITSUJI("未", 7), UMA("午", 8), SARU("申", 9), TORI("酉", 10), INU("戌", 11), I("亥", 12);
+## 十二支を表現する enum の定義
 
-        private final String text;
-        private final int id;
+### 変数の定義
 
-        private EarthlyBranches(final String text, final int id) {
-            this.text = text;
-            this.id   = id;
-        }
+```java
+private final String text;
+private final int id;
+```
 
-        public static EarthlyBranches findById(final int id) {
-            for (final EarthlyBranches eb : EarthlyBranches.values()) {
-                if (eb.id == id) {
-                    return eb;
-                }
-            }
-            return null;
-        }
+### コンストラクタの定義
+enum もコンストラクタを持つことができる。enum のコンストラクタはクラス内部からしか呼べないため、
+private はつける必要がなく、IDEによっては冗長な修飾子だと指摘される。
 
-        public static EarthlyBranches findByText(final String text) {
-            if (text == null) {
-                return null;
-            }
-            for (final EarthlyBranches eb : EarthlyBranches.values()) {
-                if (eb.text.equals(text)) {
-                    return eb;
-                }
-            }
-            return null;
-        }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(EarthlyBranches.findById(1).text);
-        System.out.println(EarthlyBranches.findByText("申").text);
-    }
-
+```java:コンストラクタ
+private EarthlyBranches(final String text, final int id) {
+    this.text = text;
+    this.id   = id;
 }
 ```
+
+
+### enum インスタンスの定義
+コンストラクタで定義した順に変数を指定する。
+
+```java
+NE("子", 1), USHI("丑", 2), TRA("寅", 3), U("卯", 4), TATSU("辰", 5), MI("巳", 6),
+HITSUJI("未", 7), UMA("午", 8), SARU("申", 9), TORI("酉", 10), INU("戌", 11), I("亥", 12);
+```
+
+[ソースコード(Knock018.java)](src/Knock018.java)
