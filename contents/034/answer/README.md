@@ -10,17 +10,4 @@ forEach を使う場合は stream() を呼ばずとも、 [Iterable インター
 medals.forEach(System.out::println);
 ```
 
-
-```java:Knock034.java
-public class Knock034 {
-
-    public static void main(String[] arguments) {
-        final java.util.List<String> medals = new java.util.ArrayList<>();
-        medals.add("gold");
-        medals.add("silver");
-        medals.add("bronze");
-        medals.forEach(System.out::println);
-    }
-
-}
-```
+[ソースコード(Knock034.java)](src/Knock034.java)
