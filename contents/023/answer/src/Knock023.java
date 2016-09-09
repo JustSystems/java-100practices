@@ -9,19 +9,21 @@
 public class Knock023 {
 
     /**
-     * print passed int value.
+     * toString passed int value.
      * @param i
+     * @return string
      */
-    private static void print(final int i) {
-        System.out.println("i: int = " + String.valueOf(i));
+    private static String intToString(final int i) {
+        return String.valueOf(i);
     }
 
     /**
-     * print passed float value.
+     * toString passed float value.
      * @param f
+     * @return string
      */
-    private static void print(final float f) {
-        System.out.println("f: float = " + String.valueOf(f));
+    private static String floatToString(final float f) {
+        return String.valueOf(f);
     }
 
     /**
@@ -29,7 +31,7 @@ public class Knock023 {
      * @param args
      */
     public static void main(final String[] args) {
-        print(1);
-        print(1f);
+        System.out.println("i: int   = " + intToString(1));
+        System.out.println("f: float = " + floatToString(1f));
     }
 }
