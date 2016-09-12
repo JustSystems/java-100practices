@@ -3,25 +3,24 @@
 ***
 # 023：解答例
 
-違う型の引数を取る同じ名前のメソッドを複数実装する。例えば、受け取った引数を文字列に変換して標準出力するメソッド print を下記の通り定義する。
+違う型の引数を取る同じ名前のメソッドを複数実装する。
+例えば、受け取った引数を文字列に変換して標準出力するメソッド convertString を下記の通り定義する。
 
-```java:int方の値をprintするメソッド
-private static void print(final int i) {
-    System.out.println("i: int = " + String.valueOf(i));
+```java:int方の値をStringに変換するメソッド
+private static String convertString(final int i) {
+    return String.valueOf(i);
 }
 ```
 
-```java:float型の値をprintするメソッド
-private static void print(final float f) {
-    System.out.println("f: float = " + String.valueOf(f));
+```java:float型の値をStringに変換するメソッド
+private static String convertString(final float f) {
+    return String.valueOf(f);
 }
 ```
-
-今回はどちらのメソッドが呼ばれたのかをわかりやすくするために、出力の頭に型を表示している。
 
 ```java:呼び出し
-print(1);
-print(1f);
+convertString(1);
+convertString(1f);
 ```
 
 ```:実行結果
