@@ -13,7 +13,7 @@ public class Knock023 {
      * @param i
      * @return string
      */
-    private static String intToString(final int i) {
+    private static String convertString(final int i) {
         return String.valueOf(i);
     }
 
@@ -22,7 +22,7 @@ public class Knock023 {
      * @param f
      * @return string
      */
-    private static String floatToString(final float f) {
+    private static String convertString(final float f) {
         return String.valueOf(f);
     }
 
@@ -31,7 +31,7 @@ public class Knock023 {
      * @param args
      */
     public static void main(final String[] args) {
-        System.out.println("i: int   = " + intToString(1));
-        System.out.println("f: float = " + floatToString(1f));
+        System.out.println("i: int   = " + convertString(1));
+        System.out.println("f: float = " + convertString(1f));
     }
 }
