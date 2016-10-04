@@ -1,0 +1,1 @@
+java -classpath C:/Program Files/java/classes;C:/Program Files/java/lib/*.jar 実行クラス名
