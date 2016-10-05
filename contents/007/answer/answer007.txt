@@ -1,0 +1,6 @@
+java -classpath "%HOMEPATH%\java\classes;%HOMEPATH%\java\lib\*.jar" 実行クラス名
+
+[説明]
+""内のクラスおよびjarファイルを;で複数指定し、
+この中から実行クラス名のクラスを探し実行することができる。
+widowsで実行する場合は、ホームディレクトリの表記が %HOMEPATH% となる。
