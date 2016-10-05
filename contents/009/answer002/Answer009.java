@@ -19,8 +19,7 @@ public class Answer009 {
         
         //配列に値が入っていない場合、強制終了
         if (args.length < 1 ) {
-            System.out.println("Array is empty");
-            System.out.println("引数を渡して再実行してください");
+            System.err.println("引数にファイルパスを指定し、再実行して下さい");
             System.exit(1);
         }
         String file = args[0];
