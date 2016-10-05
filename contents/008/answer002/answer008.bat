@@ -17,7 +17,6 @@ EXIT /B %ERRORLEVEL%
 
 :SUCCESS
 
-@ECHO OFF
 @REM -------------------------------------------------------
 @REM 実行結果
 @REM classファイルのバージョンを記載
