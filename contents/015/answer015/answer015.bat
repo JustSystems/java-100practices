@@ -5,9 +5,17 @@
 @REM author: jsfkdt
 @REM ------------------------------------------------------------------------------
 
-javac answer015.java
-java answer015
+SET CLASSES=classes
 
+IF NOT EXIST %CLASSES% (
+    MKDIR %CLASSES%
+    IF ERRORLEVEL 1 GOTO FAILURE
+)
+
+javac -d %CLASSES% src\Answer015.java
+IF ERRORLEVEL 1 GOTO FAILURE
+
+java -cp %CLASSES% Answer015
 IF ERRORLEVEL 1 GOTO FAILURE
 
 GOTO SUCCESS
