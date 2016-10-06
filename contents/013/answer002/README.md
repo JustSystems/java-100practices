@@ -6,7 +6,7 @@
 クラスを初期化することができないため`ExceptionInInitializerError`が発生する。
 
 ## 正しく実行させるための例
-````Java
+```Java
 //private static Object n;  //修正前
 private static Object n = 100; //修正後
 ```
