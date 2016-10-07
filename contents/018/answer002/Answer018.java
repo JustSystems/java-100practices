@@ -5,8 +5,8 @@
  */
 public class Answer018 {
     
-    private enum ZodiacSigns{
-        NE("子", 1), USHI("丑", 2), TRA("寅", 3), U("卯", 4), TATSU("辰", 5), MI("巳", 6),
+    private enum ZodiacSigns {
+        NE("子", 1), USHI("丑", 2), TORA("寅", 3), U("卯", 4), TATSU("辰", 5), MI("巳", 6),
         HITSUJI("未", 7), UMA("午", 8), SARU("申", 9), TORI("酉", 10), INU("戌", 11), I("亥", 12);
         
         /** 十二支の名前. */
@@ -39,10 +39,10 @@ public class Answer018 {
         /**
          * 固有のIDに紐付く十二支のインスタンスを取得する.
          *
-         * @param  id        固有のID
-         * @return instance  IDに紐付く十二支のインスタンス
+         * @param  id  固有のID
+         * @return 該当のIDに紐付く十二支のインスタンス.該当しない場合はnull.
          */
-        public static ZodiacSigns getInstancefromId(final int id) {
+        public static ZodiacSigns getInstanceFromId(final int id) {
             for (final ZodiacSigns instance : ZodiacSigns.values()) {
                 if (instance.id == id) {
                     return instance;
@@ -54,10 +54,10 @@ public class Answer018 {
         /**
          * 十二支の名前に紐付くインスタンスを取得する.
          *
-         * @param  id        十二支の名前
-         * @return instance  名前に紐付く十二支のインスタンス
+         * @param  name  十二支の名前
+         * @return 該当の名前に紐付く十二支のインスタンス.該当しない場合はnull.
          */
-        public static ZodiacSigns getInstancefromName(final String name) {
+        public static ZodiacSigns getInstanceFromName(final String name) {
             for (final ZodiacSigns instance : ZodiacSigns.values()) {
                 if (instance.name == name) {
                     return instance;
@@ -72,7 +72,7 @@ public class Answer018 {
      * @param arguments 使用しません.
      */
     public static void main(String[] args) {
-        System.out.println(ZodiacSigns.getInstancefromId(1));
-        System.out.println(ZodiacSigns.getInstancefromName("寅"));
+        System.out.println(ZodiacSigns.getInstanceFromId(1));
+        System.out.println(ZodiacSigns.getInstanceFromName("寅"));
     }
 }
