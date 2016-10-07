@@ -40,7 +40,7 @@ public class Answer018 {
          * 固有のIDに紐付く十二支のインスタンスを取得する.
          *
          * @param  id  固有のID
-         * @return 該当のIDに紐付く十二支のインスタンス.該当しない場合はnull.
+         * @return 該当のIDに紐付く十二支のインスタンス. 該当しない場合はnull.
          */
         public static ZodiacSigns getInstanceFromId(final int id) {
             for (final ZodiacSigns instance : ZodiacSigns.values()) {
@@ -55,7 +55,7 @@ public class Answer018 {
          * 十二支の名前に紐付くインスタンスを取得する.
          *
          * @param  name  十二支の名前
-         * @return 該当の名前に紐付く十二支のインスタンス.該当しない場合はnull.
+         * @return 該当の名前に紐付く十二支のインスタンス. 該当しない場合はnull.
          */
         public static ZodiacSigns getInstanceFromName(final String name) {
             for (final ZodiacSigns instance : ZodiacSigns.values()) {
