@@ -15,9 +15,6 @@ public class Answer017 {
 
     /** ある long 変数. */
     private static volatile long variable = -1L;
-
-    /** スレッドAにて評価用の変数 **/
-    private static long variable2;
     
     /**
      * 017の解答です.
@@ -33,15 +30,18 @@ public class Answer017 {
         es.submit(() -> {
             for (int i = 0; i < COUNT; i++) {
                 
+                /** 評価用の変数 **/
+                long atomicVariable;
+    
                 // 参照値をアトミックな値に設定.
                 atom.set(variable);
                 
                 // 参照値を評価用変数に代入.
-                variable2 = atom.get();
+                atomicVariable = atom.get();
                 
                 // 変数が0でも-1でもない場合にその内容を出力.
-                if (variable2 != 0 && variable2 != -1) {
-                    System.out.printf("variable (%d) is not 0 or -1.\n", variable2);
+                if (atomicVariable != 0 && atomicVariable != -1) {
+                    System.out.printf("variable (%d) is not 0 or -1.\n", atomicVariable);
                 }
             }
             
