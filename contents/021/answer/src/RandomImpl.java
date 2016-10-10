@@ -13,6 +13,10 @@ public class RandomImpl extends UnicastRemoteObject implements RandomRmi {
     public RandomImpl() throws RemoteException {
     }
     
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int returnRandom() {
         Random rand = new Random();
         int num = rand.nextInt(8);
