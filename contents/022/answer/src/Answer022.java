@@ -10,12 +10,9 @@ public class Answer022 {
      * 
      * @param arguments
      */
-    public static void main(final String[] args) throws InterruptedException {
+    public static void main(final String[] args) {
         /** 引数の個数 **/
-        final int len;
-        
-        // 引数の数を取得.
-        len = args.length;
+        final int len = args.length;
         
         if (len == 3) {
             listNames(args[0], args[1]);
@@ -25,7 +22,7 @@ public class Answer022 {
             listNames(args[0], args[3], args[5], args[6]);
         } else {
             // USAGEを出力.
-            System.out.println("Usage : 引数の数を3個または5個、7個にして再実行してください");
+            System.err.println("Usage : 引数の数を3個、5個、7個のいずれかにして再実行してください");
             // 終了コードを2として、強制終了.
             System.exit(2);
         }
