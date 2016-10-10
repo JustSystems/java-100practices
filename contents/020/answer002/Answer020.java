@@ -16,7 +16,7 @@ public class Answer020 {
      * それぞれのリストについて、全要素を順番に出力する.
      * @param arguments 使用しません.
      */
-    public static void main(final String[] args) throws InterruptedException {
+    public static void main(final String[] args) {
         
         
         /** ジェネリクスを用いたリスト **/
@@ -31,7 +31,7 @@ public class Answer020 {
         }
         
         // ジェネリクスを用いたリストの要素を順番に出力.
-        for (int i=0; i<genericList.size(); i++) {
+        for (int i = 0; i < genericList.size(); i++) {
             System.out.println(genericList.get(i));
         }
         
@@ -41,7 +41,7 @@ public class Answer020 {
         }
         
         // ジェネリクスを用いないリストの要素を順番に出力.
-        for (int i=0; i<nonGenericList.size(); i++) {
+        for (int i = 0; i < nonGenericList.size(); i++) {
             System.out.println(nonGenericList.get(i));
         }
     }
