@@ -16,18 +16,17 @@ public class Answer030 {
     public static void main(final String[] args) {
         
         // クラスをシリアライズしてファイルに保存.
-        try (FileOutputStream outputFile = new FileOutputStream("Sample.txt")) {
+        try (ObjectOutputStream outputObject = new ObjectOutputStream(new FileOutputStream("Sample.txt"))) {
             
-            // 出力オブジェクトの生成.
-            try (ObjectOutputStream outputObject = new ObjectOutputStream(outputFile)) {
-                
-                // シリアライズ対象のクラスの書き込み
-                outputObject.writeObject(new ForSerializeClass());
-                
-            } catch (IOException e) {
-                // 入出力エラー.
-                e.printStackTrace();
-            }
+            // シリアライズクラスのインスタンスを生成.
+            ForSerializeClass serializeClass = new ForSerializeClass();
+            
+            // オブジェクトのインスタンス変数に値を設定する.
+            serializeClass.setIntInstance(100);
+            serializeClass.setStringInstance("Answer030");
+            
+            // シリアライズ対象のクラスの書き込み
+            outputObject.writeObject(serializeClass);
             
         } catch (IOException e) {
             // 入出力エラー.
@@ -35,25 +34,17 @@ public class Answer030 {
         }
         
         // ファイルをデシリアライズし、インスタンス変数を標準出力.
-        try (FileInputStream inputFile = new FileInputStream("Sample.txt")) {
+        try (ObjectInputStream inputObject = new ObjectInputStream(new FileInputStream("Sample.txt"))) {
             
-            // 入力オブジェクトの生成.
-            try (ObjectInputStream inputObject = new ObjectInputStream(inputFile)) {
-                
-                // オブジェクトの読み込み.
-                ForSerializeClass serializeClass = (ForSerializeClass)inputObject.readObject();
-                
-                // オブジェクトのインスタンス変数に値を設定する.
-                serializeClass.setIntInstance(100);
-                serializeClass.setStringInstance("Answer030");
-                
-                // 読み込んだオブジェクトのインスタンス変数を標準出力.
-                System.out.println(serializeClass.intInstance);
-                System.out.println(serializeClass.stringInstance);
-                
-            } catch (IOException  e) {
-                e.printStackTrace();
-            }
+            // オブジェクトの読み込み.
+            ForSerializeClass serializeClass = (ForSerializeClass) inputObject.readObject();
+            
+            // 読み込んだオブジェクトのインスタンス変数の妥当性をチェック.
+            assert serializeClass.getIntInstance() == 100
+                : "デシリアライズに失敗しました。int型変数の値：" + serializeClass.getIntInstance();
+            
+            assert serializeClass.getStringInstance().equals("Answer030")
+                : "デシリアライズに失敗しました。String型変数の値：" + serializeClass.getStringInstance();
             
         } catch (IOException  e) {
             // 入出力エラー.
