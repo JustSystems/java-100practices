@@ -24,7 +24,7 @@ public class Answer023 {
      * @return intŒ^‚©‚çStringŒ^‚Ö•ÏŠ·‚µ‚½Œ‹‰Ê.
      */
     private static String convertToString(final int word) {
-        return String.valueOf("intŒ^‚©‚çStringŒ^‚Ö•ÏŠ·‚µ‚½Œ‹‰ÊF"+word);
+        return String.valueOf("intŒ^‚©‚çStringŒ^‚Ö•ÏŠ·‚µ‚½Œ‹‰ÊF" + word);
     }
     
     /**
@@ -34,6 +34,6 @@ public class Answer023 {
      * @return floatŒ^‚©‚çStringŒ^‚Ö•ÏŠ·‚µ‚½Œ‹‰Ê.
      */
     private static String convertToString(final float word) {
-        return String.valueOf("floatŒ^‚©‚çStringŒ^‚Ö•ÏŠ·‚µ‚½Œ‹‰ÊF"+word);
+        return String.valueOf("floatŒ^‚©‚çStringŒ^‚Ö•ÏŠ·‚µ‚½Œ‹‰ÊF" + word);
     }
 }
