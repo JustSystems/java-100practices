@@ -6,4 +6,5 @@
 ## 030：シリアライズ
 * java.lang.String型とint型のインスタンス変数を持つクラスをシリアライズしてファイルに保存し、そのファイルを読み込んでデシリアライズするプログラムを実装せよ。
     * java.io.ObjectOutputStream および java.io.ObjectInputStream を使用せよ。
+    * デシリアライズ後にシリアライズ前の変数値が復元されていることを確認せよ。
 
