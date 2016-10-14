@@ -10,24 +10,16 @@ public final class Answer035 implements Runnable {
     /* スレッドグループB. */
     private static ThreadGroup groupB = new ThreadGroup("GroupB");
     
-    /* スレッドグループAの固有スレッド名. */
-    private int countA = 1;
-    
-    /* スレッドグループBの固有スレッド名. */
-    private int countB = 1;
-    
     /**
      * グループA,Bのスレッドを各100スレッド実行する.
      */
     @Override public void run() {
         for (int i = 0; i < 100; i++) {
-            new Thread(groupA, new ThreadRun(), "thread" + countA).start();
-            countA++;
+            new Thread(groupA, new ThreadRun(), "thread" + i).start();
         }
         
         for (int i = 0; i < 100; i++) {
-            new Thread(groupB, new ThreadRun(), "thread" + countB).start();
-            countB++;
+            new Thread(groupB, new ThreadRun(), "thread" + i).start();
         }
     }
     
@@ -59,9 +51,14 @@ public final class Answer035 implements Runnable {
         thread.start();
         
         // アクティブスレッド数を出力する.
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1 ;; i++) {
             printActiveCount(i);
             thread.sleep(1000L);
+            
+            // アクティブスレッドが0になったときにループを抜ける.
+            if (groupA.activeCount() == 0 && groupB.activeCount() == 0) {
+                break;
+            }
         }
     }
 }
