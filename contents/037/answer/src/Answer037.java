@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Cloneable;
+import java.lang.InternalError;
 /**
  * 037の解答です。
  *
@@ -47,21 +48,28 @@ public class Answer037 implements Cloneable {
         List<Date> shallowDateList = shallowCopy(dateInstance.dateList);
         
         // 元データの書き換え
-        shallowDateList.get(0).setDate(1);
+        dateInstance.dateList.get(0).setDate(1);
         
-        // 元データの標準出力.
-        System.out.println(dateInstance.dateList.get(0).getDate());
         // ディープコピーデータの標準出力.
-        System.out.println(deepCopyDateInstance.dateList.get(0).getDate());
+        if (deepCopyDateInstance == null) {
+            System.out.println(deepCopyDateInstance);
+        } else {
+            System.out.println(deepCopyDateInstance.dateList.get(0).getDate());
+        }
+        
         // シャローコピーデータの標準出力.
-        System.out.println(shallowDateList.get(0).getDate());
+        if (shallowDateList == null) {
+            System.out.println(shallowDateList);
+        } else {
+            System.out.println(shallowDateList.get(0).getDate());
+        }
         
     }
     
     /**
      * オブジェクトのディープコピーを行い、コピー後オブジェクトを返却する.
      *
-     * @return Answer037オブジェクト
+     * @return Answer037オブジェクト.オブジェクトのdateListがnullの場合はnullを返却.
      */ 
     @Override
     public Answer037 clone() {
@@ -72,33 +80,39 @@ public class Answer037 implements Cloneable {
             // 新規リストの作成.
             List<Date> copiedDateList = new ArrayList<Date>();
             
-            // Date型の要素を取得.
-            Date pastDate = new Date(result.dateList.get(0).getTime());
-            Date today = new Date(result.dateList.get(1).getTime());
-            Date futureDate = new Date(result.dateList.get(2).getTime());
             
-            // リストへDate型を代入.
-            copiedDateList.add(pastDate);
-            copiedDateList.add(today);
-            copiedDateList.add(futureDate);
+            if (result.dateList == null) {
+                // nullの場合は、nullを返却.
+                return null;
+                
+            } else {
+                // Date型の要素を取得し、リストへ代入.
+                for (Date a : result.dateList) {
+                    copiedDateList.add(new Date(a.getTime()));
+                }
+            }
             
             // リストそのものを上書きする.
             result.dateList = copiedDateList;
             
             // 結果を返す.
             return result;
-        } catch(CloneNotSupportedException e) {
-            throw new AssertionError();
+        } catch (CloneNotSupportedException e) {
+            throw new InternalError();
         }
     }
     
     /**
      * オブジェクトのシャローコピーを行い、コピー後リストを返却する.
      *
-     * @return Date型リスト
+     * @return Date型リスト. 引数がnullの時は、nullを返却.
      */
     public static List<Date> shallowCopy(List<Date> shallowList) {
-        List<Date> shallowDateList = new ArrayList<Date> (shallowList);
-        return shallowDateList;
+        // nullの場合は、nullを返却.
+        if (shallowList == null) {
+            return null;
+        }
+        
+        return new ArrayList<Date> (shallowList);
     }
 }
