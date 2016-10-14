@@ -1,74 +1,67 @@
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
-
 /**
  * 035の解答です.
  *
  * @author jsfkdt
  */
-public class Answer035 {
-    private final ExecutorService executor;
+public final class Answer035 implements Runnable {
+    /* スレッドグループA. */
+    private static ThreadGroup groupA = new ThreadGroup("GroupA");
+    
+    /* スレッドグループB. */
+    private static ThreadGroup groupB = new ThreadGroup("GroupB");
+    
+    /* スレッドグループAの固有スレッド名. */
+    private int countA = 1;
+    
+    /* スレッドグループBの固有スレッド名. */
+    private int countB = 1;
     
     /**
-     * 実行するスレッド数を定める.
+     * グループA,Bのスレッドを各100スレッド実行する.
      */
-    Answer035(int poolSize) {
-        this.executor = Executors.newFixedThreadPool(poolSize);
-    }
-    
-    /**
-     * スレッドAを実行する.
-     */
-    public void startThreadsA() {
+    @Override public void run() {
         for (int i = 0; i < 100; i++) {
-            // スレッドAを実行させる.
-            executor.execute(new ThreadRequestA());
+            new Thread(groupA, new ThreadRun(), "thread" + countA).start();
+            countA++;
+        }
+        
+        for (int i = 0; i < 100; i++) {
+            new Thread(groupB, new ThreadRun(), "thread" + countB).start();
+            countB++;
         }
     }
     
     /**
-     * スレッドBを実行する.
+     * 各スレッドグループにおけるアクティブスレッド数を出力する.
+     *
+     * @param point カウント回数
      */
-    public void startThreadsB() {
-        for (int i = 0; i < 100; i++) {
-            executor.execute(new ThreadRequestB());
-        }
+    public static void printActiveCount(int point) {
+        System.out.println("Active Threads in Thread Group " + groupA.getName() +
+            " at point(" + point + "):" + " " + groupA.activeCount());
     
-    }
-    /**
-     * シャットダウンを行う.
-     */
-    public void shutdownPool() {
-        executor.shutdown();
+        System.out.println("Active Threads in Thread Group " + groupB.getName() +
+            " at point(" + point + "):" + " " + groupB.activeCount());
     }
     
     /**
      * 035の解答です.
+     * スレッドグループごとにスレッドを実行し、
+     * 各スレッドにてアクティブであるスレッド数を標準出力する.
+     *
      * @param arguments 使用しません.
-     */
-    public static void main(String[] args)  {
+     */    
+    public static void main(String[] args) throws InterruptedException {
+        /* 新しいスレッドを割り当てる. */
+        Thread thread = new Thread(new Answer035());
         
-        Answer035 nh = new Answer035(200);
+        /* スレッドを実行する. */
+        thread.start();
         
-        // スレッドAの実行.
-        nh.startThreadsA();
-        
-        // スレッドBの実行.
-        nh.startThreadsB();
-        
-        // アクティブなスレッド数の表示.
-        for(int i = 0; i < 6; i++) {
-            System.out.println("スレッドA アクティブスレッド数：" + ThreadRequestA.activeThreadCount + "個");
-            System.out.println("スレッドB アクティブスレッド数：" + ThreadRequestB.activeThreadCount + "個");
-            int beforeActiveThread = ThreadRequestA.activeThreadCount;
-            try{
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        // アクティブスレッド数を出力する.
+        for (int i = 1; i < 8; i++) {
+            printActiveCount(i);
+            thread.sleep(1000L);
         }
-        
-        // スレッドの停止.
-        nh.shutdownPool();
     }
 }
