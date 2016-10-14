@@ -10,7 +10,7 @@ import java.lang.InternalError;
  *
  * @author jsfkdt
  */
-public class Answer037 implements Cloneable {    
+public class Answer037 implements Cloneable {
     /* Date型リスト */
     private List<Date> dateList = new ArrayList<Date>();
     
@@ -69,7 +69,7 @@ public class Answer037 implements Cloneable {
     /**
      * オブジェクトのディープコピーを行い、コピー後オブジェクトを返却する.
      *
-     * @return Answer037オブジェクト.オブジェクトのdateListがnullの場合はnullを返却.
+     * @return Answer037オブジェクト.オブジェクトのdateListがnullの場合はオブジェクトを返却.
      */ 
     @Override
     public Answer037 clone() {
@@ -80,15 +80,18 @@ public class Answer037 implements Cloneable {
             // 新規リストの作成.
             List<Date> copiedDateList = new ArrayList<Date>();
             
-            
             if (result.dateList == null) {
-                // nullの場合は、nullを返却.
-                return null;
+                // nullの場合は、オブジェクトを返却.
+                return result;
                 
-            } else {
-                // Date型の要素を取得し、リストへ代入.
-                for (Date a : result.dateList) {
-                    copiedDateList.add(new Date(a.getTime()));
+            }
+            
+            // Date型の要素を取得し、リストへ代入.
+            for (Date dateInstance : result.dateList) {
+                if (dateInstance == null) {
+                    copiedDateList.add(null);
+                } else {
+                    copiedDateList.add(new Date(dateInstance.getTime()));
                 }
             }
             
@@ -98,7 +101,7 @@ public class Answer037 implements Cloneable {
             // 結果を返す.
             return result;
         } catch (CloneNotSupportedException e) {
-            throw new InternalError();
+            throw new InternalError(e);
         }
     }
     
@@ -112,7 +115,6 @@ public class Answer037 implements Cloneable {
         if (shallowList == null) {
             return null;
         }
-        
         return new ArrayList<Date> (shallowList);
     }
 }
