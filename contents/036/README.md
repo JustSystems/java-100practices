@@ -8,18 +8,14 @@
     * 排他処理は極力短くなるようにせよ。
 
 ```java
-private List<Object> members = new ArrayList<Object>();
+private List<Object> members;
 public void add(Object member) {
-    synchrozied(members) {
-        members.add(member);
-    }
+    members.add(member);
 }
 public void replace(Object oldMember, Object newMember) {
-    synchrozied(members) {
-        if (members.contains(oldMember)) {
-            members.remove(oldMember);
-            members.add(newMember);
-        }
+    if (members.contains(oldMember)) {
+        members.remove(oldMember);
+        members.add(newMember);
     }
 }
 ```
