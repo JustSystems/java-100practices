@@ -26,7 +26,7 @@ public class Answer038 {
         final String afterWord = args[0];
         
         /* リソースファイル. */
-        final ResourceBundle resouce;
+        final ResourceBundle resource;
         
         /* ファイル名を設定. */
         final String fileName = "output";
@@ -35,14 +35,14 @@ public class Answer038 {
         try {
             // ロケールが日本の場合.
             if ("JP".equals(Locale.getDefault().getCountry())) {
-                resouce = ResourceBundle.getBundle(fileName, Locale.JAPAN);
+                resource = ResourceBundle.getBundle(fileName, Locale.JAPAN);
             } else {
                 //ロケールが日本以外の場合.
-                resouce = ResourceBundle.getBundle(fileName, Locale.US);
+                resource = ResourceBundle.getBundle(fileName, Locale.US);
             }
             
             // 文字列を置換し、標準出力.
-            System.out.println(java.text.MessageFormat.format(resouce.getString("sentence"), afterWord));
+            System.out.println(MessageFormat.format(resource.getString("sentence"), afterWord));
         
         } catch (MissingResourceException e) {
             e.printStackTrace();
