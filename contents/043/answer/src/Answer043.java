@@ -44,7 +44,7 @@ public class Answer043 implements Cloneable {
     /**
      * オブジェクトのディープコピーを行い、コピー後オブジェクトを返却する.
      *
-     * @return Answer043オブジェクト.オブジェクトのtargetDayがnullの場合はオブジェクトを返却.
+     * @return Answer043オブジェクト.
      */
     @Override
     public Answer043 clone() {
@@ -55,16 +55,7 @@ public class Answer043 implements Cloneable {
             // Date型インスタンスを生成.
             Date copiedDate = new Date();
             
-            if (result.targetDay == null) {
-                // nullの場合は、nullを返却.
-                return result;
-                
-            }
-            
-            // Date型インスタンスのコピー.
-            copiedDate.setTime(result.targetDay.getTime());
-            
-            // オブジェクトを上書きする.
+            // 生成したインスタンスで元データを上書き.
             result.targetDay = copiedDate;
             
             // 結果を返す.
