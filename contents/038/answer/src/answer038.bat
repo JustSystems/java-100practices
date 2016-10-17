@@ -11,8 +11,8 @@ SET word="Answer038の解答"
 javac Answer038.java
 
 @REM プロパティファイルの文字コードを変換
-native2ascii -encoding UTF-8 Japanese.properties JapaneseMap.properties
-native2ascii -encoding UTF-8 English.properties EnglishMap.properties
+native2ascii -encoding UTF-8 language_en.properties output_en.properties
+native2ascii -encoding UTF-8 language_ja.properties output_ja.properties
 
 @REM プログラムの実行
 java Answer038 %word%
