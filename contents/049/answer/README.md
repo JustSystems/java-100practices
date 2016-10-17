@@ -2,3 +2,4 @@
 
 ***
 # 049：解答例
+[ソースコード(Answer049.java)](src/Answer049.java)
