@@ -40,6 +40,7 @@ public class Answer044 implements Comparable<Answer044> {
         dateList.add(new Answer044(new Date()));
         dateList.add(new Answer044(new Date(1476423938529L)));
         dateList.add(new Answer044(new Date(1421453545000L)));
+        dateList.add(new Answer044(null));
         
         // nullが混在していた場合、エラーを出力する.
         try {
@@ -75,12 +76,14 @@ public class Answer044 implements Comparable<Answer044> {
     public int compareTo(Answer044 object) {
         Answer044 dayInstance = object;
         
-        if (this.day.getTime() < dayInstance.day.getTime()) {
+        if (this.day == null && dayInstance.day == null) {
+            return 0;
+        } else if (this.day == null) {
             return -1;
-        } else if (this.day.getTime() > dayInstance.day.getTime()) {
+        } else if (dayInstance.day == null) {
             return 1;
         } else {
-            return 0;
+            return this.day.compareTo(dayInstance.day);
         }
     }
 }
