@@ -1,5 +1,6 @@
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /**
  * 040用のエラー出力クラス.
@@ -39,14 +40,8 @@ public class MyUncaughtExceptionHandler implements UncaughtExceptionHandler {
      */
     public String nowTime() {
         Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
         
-        // 時を取得
-        int h = calendar.get(calendar.HOUR_OF_DAY);
-        // 分を取得
-        int m = calendar.get(calendar.MINUTE);
-        //秒を取得
-        int s = calendar.get(calendar.SECOND);
-        
-        return h + ":" + m + ":" + s;
+        return df.format(calendar.getTime());
     }
 }
