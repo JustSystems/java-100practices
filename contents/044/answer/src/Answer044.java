@@ -71,6 +71,8 @@ public class Answer044 implements Comparable<Answer044> {
      * 日時の昇順ソートを行う.
      *
      * @param object Answer044オブジェクト
+     * @return Date型インスタンスの日時比較結果
+     * @exception NullPointerException objectがnullの場合.
      */
     @Override
     public int compareTo(Answer044 object) {
