@@ -28,7 +28,7 @@ public class Answer057 {
         }
         
         // テキストファイルを読み込み.
-        try (Stream<String> txtFile = Files.lines(Paths.get(args[0] + ".txt"))) {
+        try (Stream<String> txtFile = Files.lines(Paths.get(args[0]))) {
             
             // 一行毎に標準出力.
             txtFile.map(line -> line).forEach(System.out::println);
@@ -37,10 +37,10 @@ public class Answer057 {
             final FileSystem fileSystem = FileSystems.getDefault();
             
             // コピー元ファイルパスを取得.
-            final Path beforeFile = Paths.get(args[0] + ".txt");
+            final Path beforeFile = Paths.get(args[0]);
             
             // コピー先のパスを取得.
-            final Path afterFile = fileSystem.getPath(args[0] + ".read.txt");
+            final Path afterFile = fileSystem.getPath(args[0] + ".read");
             
             // ファイルをコピー.
             Files.copy(beforeFile, afterFile, REPLACE_EXISTING);

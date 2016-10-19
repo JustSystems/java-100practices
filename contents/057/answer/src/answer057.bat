@@ -5,7 +5,7 @@
 @REM author: jsfkdt
 @REM ------------------------------------------------------------------------------
 
-SET word="Answer057"
+SET word="Answer057.txt"
 
 @REM ƒRƒ“ƒpƒCƒ‹
 javac Answer057.java
