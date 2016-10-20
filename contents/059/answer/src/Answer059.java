@@ -5,9 +5,11 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Iterator;
 import java.io.FileWriter;
-import java.io.Writer;
+import java.io.BufferedWriter;
 import java.io.PrintStream;
 import java.io.FileOutputStream;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
@@ -26,11 +28,17 @@ public class Answer059 {
      * レスポンスコードを標準出力.
      * URLのヘッダやボディの内容はファイルに出力する.
      *
+     * 復帰値 0:正常終了
+     *        1:引数に指定したURLを見直して下さい.
+     *        2:引数に指定したURLのホストまたはDNS設定を見直して下さい.
+     *        3:再度接続し直して下さい.
+     *
      * @param arguments 使用しません.
      */
     public static void main(final String[] args) {
         /* 復帰値. */
         int errorCode = 0;
+        
         
         //配列に値が入っていない場合、強制終了.
         if (args.length < 1 ) {
@@ -56,11 +64,6 @@ public class Answer059 {
             final int responseCode = connect.getResponseCode();
             System.out.println("/***レスポンスコード***/\n" + responseCode + "\n");
             
-            // レスポンスコードが200以外の場合は、強制終了.
-            if (responseCode != HttpURLConnection.HTTP_OK) {
-                System.exit(1);
-            }
-            
             /* ヘッダファイルを作成. */
             makeHeaderFile(connect);
             System.out.println("/***レスポンスヘッダを以下ファイルに出力しました***/");
@@ -77,17 +80,15 @@ public class Answer059 {
             e.printStackTrace();
             
         } catch (UnknownHostException e) {
-            errorCode = 1;
+            errorCode = 2;
             // ホストのIPアドレス取得不可.
             e.printStackTrace();
             
         } catch (IOException e) {
-            errorCode = 1;
+            errorCode = 3;
             e.printStackTrace();
         } finally {
-            if (errorCode == 1) {
-                System.exit(errorCode);
-            }
+            System.exit(errorCode);
         }
     }
     
@@ -97,7 +98,7 @@ public class Answer059 {
      * @param connectHeader URL接続オブジェクト
      */
     public final static void makeHeaderFile(HttpURLConnection connectHeader) {
-        try (final Writer output = new FileWriter("header.txt")) {
+        try (final BufferedWriter output = new BufferedWriter(new FileWriter("header.txt"))) {
             // ヘッダを取得.
             final Map headers = connectHeader.getHeaderFields();
             
@@ -109,8 +110,11 @@ public class Answer059 {
                 final String headerKey = (String)header.next();
                 
                 // ファイルへ書き出し.
-                output.write("  " + headerKey + ": " + headers.get(headerKey) + "\n");
+                output.write("  " + headerKey + ": " + headers.get(headerKey));
+                output.newLine();
             }
+            
+            System.out.println(headers.get("Content-Length"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,25 +124,24 @@ public class Answer059 {
      * 読み込んだURLの本文をファイルへ出力します.
      *
      * @param connectHeader URL接続オブジェクト
-     */    
+     */
     public final static void makeBodyFile(HttpURLConnection connectBody) {
-        try (final BufferedReader bodyReader = new BufferedReader(new InputStreamReader(connectBody.getInputStream()));
-             final PrintStream output = new PrintStream(new FileOutputStream("body.txt"))) {
-            
-            // 現在の出力先を取得.
-            final PrintStream sysOut = System.out;
-            
-            // 標準出力の出力先を指定ファイル内へ切り替える.
-            System.setOut(output);
-            
-            // 切り替えた先に標準出力.
-            bodyReader.lines().forEach(System.out::println);
-            
-            // 標準の出力先を元に戻す.
-            System.setOut(sysOut);
-            
+        try (final BufferedInputStream input = new BufferedInputStream(connectBody.getInputStream());
+             final BufferedOutputStream output = new BufferedOutputStream(new FileOutputStream("body.txt"))){
+                
+                /* 読み込んだバイト文字列の長さ. */
+                int byteLength;
+                /* 一度に読み込める最大のbyte格納数. */
+                byte[] maxbyte = new byte[1024];
+                
+                // {@code maxbyte}の分だけ読み込み、その分だけファイルに書き込む.
+                // 読み込むデータがなくなった時点でwhile文を抜ける.
+                while ((byteLength = input.read(maxbyte)) != -1) {
+                    output.write(maxbyte, 0, byteLength);
+                }
+                
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }    
 }
