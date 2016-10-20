@@ -53,7 +53,7 @@ public class Answer060 {
                         
                         // Macアドレスのバイト文字列から出力用文字列に変換.
                         if (byteMacAddresses != null) {
-                            for (int i = 0; i < byteMacAddresses.length - 2; i++) {
+                            for (int i = 0; i < byteMacAddresses.length - 1; i++) {
                                 macAddress += String.format("%02X:", byteMacAddresses[i]);
                             }
                             macAddress += String.format("%02X", byteMacAddresses[byteMacAddresses.length - 1]);
