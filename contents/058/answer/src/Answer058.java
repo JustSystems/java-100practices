@@ -28,14 +28,20 @@ public class Answer058 {
             // ファイル内容をバイト表記で取得.
             final byte[] fileContentBytes = Files.readAllBytes(Paths.get(args[0]));
             
+            // バイト数が3未満の場合.
+            if (fileContentBytes.length < 3){
+                System.out.println("BOM無しファイルです。");
+                System.exit(0);
+            }            
+            
             // BOM判定.
             if (fileContentBytes[0] == (byte)0xEF && fileContentBytes[1] == (byte)0xBB
                     && fileContentBytes[2] == (byte)0xBF) {
                 
-                System.err.println("BOM付きファイルのため、異常終了");
+                System.out.println("BOM付きファイルです。");
                 System.exit(1);
             } else {
-                System.err.println("正常終了");
+                System.out.println("BOM無しファイルです。");
                 System.exit(0);
             }
             
