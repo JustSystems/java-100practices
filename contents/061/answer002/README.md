@@ -8,7 +8,7 @@ java -Xms4m -Xmx4m -XX:NewSize=500k -XX:MaxNewSize=500k -Xloggc:./gc.txt -XX:+Pr
 ```
 [ソースコード(Answer061.java)](src/Answer061.java)
 
-## 標準出力...
+## 標準エラー出力...
 ```
 Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
         at java.util.Arrays.copyOf(Unknown Source)
