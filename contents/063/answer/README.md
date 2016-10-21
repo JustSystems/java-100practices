@@ -10,7 +10,7 @@
 本メソッドの呼び出しが行われた場合、2が返却される。
 `"value1"` を引数に呼び出しが行われた場合は、0が返却される。
 ### 修正案
-文字列の比較は`.equals`を使用する.
+文字列の比較は`equals()`メソッドを使用する.
 
 ## `check2`メソッド
 ### 問題点
@@ -19,15 +19,29 @@
 ### 修正案
 * `if`文での条件分岐の前で`Null`チェックを行う。
 ```java
-if (target == null) {
+public int check2(String target) {
+    /* ガード節を挿入. */
+    if (target == null) {
+        return 2;
+    }
+    
+    if (target.equals("value1")) {
+        return 0;
+    } else if (target.equals("value2")) {
+        return 1;
+    }
     return 2;
 }
 ```
+
 * `(定数).equals(変数)`の形に置き換えることで、変数に`Null`が入っても例外は発生しない。
 ```java
-if (("value1").equals(target)) {
-    return 0;
-} else if (("value2").equals(target)) {
-    return 1;
+public int check2(String target) {
+    if ("value1".equals(target)) {
+        return 0;
+    } else if ("value2".equals(target)) {
+        return 1;
+    }
+    return 2;
 }
 ```
