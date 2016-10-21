@@ -17,7 +17,7 @@
 もし`target`変数が`null`であれば、`NullPointerException`が発生してしまう。
 
 ### 修正案
-* `if`文での条件分岐の前で`Null`チェックを行う。
+* `if`文での条件分岐の前で`null`チェックを行う。
 ```java
 public int check2(String target) {
     /* ガード節を挿入. */
@@ -34,12 +34,14 @@ public int check2(String target) {
 }
 ```
 
-* `(定数).equals(変数)`の形に置き換えることで、変数に`Null`が入っても例外は発生しない。
+* `(定数).equals(変数)`の形に置き換えることで、変数に`null`が入っても例外は発生しない。
+* 1つ目の`if`文で戻り値を返しているので、2つ目の`if`文では`else if`とはせずに`if`文で実装する.
 ```java
 public int check2(String target) {
     if ("value1".equals(target)) {
         return 0;
-    } else if ("value2".equals(target)) {
+    }
+    if ("value2".equals(target)) {
         return 1;
     }
     return 2;
