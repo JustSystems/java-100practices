@@ -16,7 +16,8 @@ public class LruHashMap<K, V> extends LinkedHashMap<K, V> {
      */
     public LruHashMap(int maxSize) {
         /* trueにすることで、Mapで最も参照されていないものが削除される.(5) */
-        super(15, 0.75f, true);
+        // 格納する要素数100に対し、4/3倍の最大容量134を設定.
+        super(134, 0.75f, true);
         this.maxSize = maxSize;
     }
     
