@@ -7,14 +7,27 @@
 2. 複数スレッドにより、`publishConcertTicket()`メソッドが実行された場合、
 変数`releaseTicketId`のインクリメント処理にて競合が発生し、
 期待していた数値と異なる数値が代入されてしまう可能性がある。
+3. コンストラクタはデフォルトコンストラクタであり、その修飾子はクラスの修飾子と同じく
+`public`となっているため、このクラスのインスタンスを複数個生成出来る状態となっている。
+そのため、`releaseTicketId`は一意に保たれなくなってしまう可能性がある。
+`releaseTickedId`の一意性を保つために、デフォルトコンストラクタを`private`にして、
+他からインスタンス生成できない状態にする必要がある。
+4. 修正前の実装のままだと、チケット`ID`の上限設定が無いため、
+`Integer`型上限のチケット`ID`に達した状態で`ID`をインクリメントすると
+チケット`ID`がマイナスの値（`Integer`型の最小値）になってしまう。
+それを防ぐためにチケット`ID`が上限を超えた場合に、例外が発生するよう実装する必要がある。
 
 ## 修正
 ```java
 public class Knock067 {
     private static final Knock067 instance = new Knock067();
     
-    // int型ではなくvolatile型で宣言する. #1
-    private volatile releaseTicketId = 0;// チケットに付与する通し番号
+    // volatile修飾子で宣言する. #1
+    private volatile Integer releaseTicketId = 0;// チケットに付与する通し番号
+    
+    // コンストラクタにprivate修飾子を付けることでインスタンス化を防ぐ. #3
+    private Knock067() {
+    }
 
     public static Knock067 getInstance() {
         return instance;
@@ -31,8 +44,17 @@ public class Knock067 {
             // ...
             // ...
             // ...
-
-            this.releaseTicketId += 1;
+            
+            // チケットIDが上限を超えた場合、例外を発生させる. #4
+            try {
+                this.releaseTicketId += 1;
+                if (this.releaseTicketId == Integer.MIN_VALUE) {
+                    throw new ArithmeticException();
+                }
+            } catch (ArithmeticException e) {
+                System.err.println("エラー原因：チケットIDが上限を超えたため");
+                e.printStackTrace();
+            }
             return tiket;
         }
     }
