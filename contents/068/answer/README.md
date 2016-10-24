@@ -49,7 +49,7 @@ public class Knock068 extends HttpServlet {
             try {
                 m.setSize(Integer.parseInt(req.getParameter("size")));
             } catch (NumberFormatException e) {
-                System.err.println("例外発生：" + e);
+                e.printStackTrace();
             }
         } else {
             m.setSize(-1);
