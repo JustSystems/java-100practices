@@ -11,16 +11,21 @@
 また`Integer.parseInt()`メソッドでint型に変換する際は、`NumberFormatException`を捕捉する。
 2. `null`のデータを`parse()`メソッドでint型に変換しようとすると、`NullPointerException`が発生する。  
 そのため、`null`チェックを行う必要がある。また`parse()`メソッドを使用する際は、`ParseException`を捕捉する。
+3. `SimpleDateFormat`クラスのフォーマットとして、24時間制は`hh`ではなく`HH`で表現する。  
+また、`SimpleDateFormat`クラスはスレッドアンセーフであるため、メソッド内でインスタンス生成する必要がある。
 
 ## 修正
 ```java
 public class Knock068 extends HttpServlet {
     // 2014/01/01 23:50:11なスタイルでパーズする
-    private final static SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-
+    //private final static SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+        
+        // 修正箇所. #3
+        final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
         req.setCharacterEncoding("UTF-8");
         res.setContentType("application/json; charset=UTF-8");
@@ -44,7 +49,7 @@ public class Knock068 extends HttpServlet {
             try {
                 m.setSize(Integer.parseInt(req.getParameter("size")));
             } catch (NumberFormatException e) {
-                System.out.println("例外発生：" + e);
+                System.err.println("例外発生：" + e);
             }
         } else {
             m.setSize(-1);
