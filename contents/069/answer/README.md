@@ -50,13 +50,13 @@ public class Knock069 extends HttpServlet {
             res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             // エラーの出力.
             res.getWriter().write(m.toJsonForError());
-            e.printStackTrace();
+            return;
         }
-        
-        res.getWriter().write(m.toJson());
         
         /* 正常終了の場合のリターンコードの設定. */
         res.setStatus(HttpServletResponse.SC_OK);
+        
+        res.getWriter().write(m.toJson());
     }
 }
 ```
