@@ -12,7 +12,17 @@ MVCモデルのデザインパターンに沿ってクラスを作成してい�
 [RequestProcessorFactory.java](src/RequestProcessorFactory.java) : `page`文字列比較を行い、各操作を行うクラスのインスタンスを生成する。
 [RequestProcessor.java](src/RequestProcessor.java) : 操作に関するメソッドを1つに纏めたインターフェイス。
 [RequestConstants.java](src/RequestConstants.java) : 操作文字列を定数として管理しているクラス。
-[SeveralProcessor(ディレクトリ)](src/severalProcessor/) : 各操作を実行するクラス群。
+
+以下クラスは各操作を実行するクラス群 : 
+[AllRequestProcessor.java](src/AllRequestProcessor.java)
+[CompareRequestProcessor.java](src/CompareRequestProcessor.java)
+[DeleteRequestProcessor.java](src/DeleteRequestProcessor.java)
+[IssueRequestProcessor.java](src/IssueRequestProcessor.java)
+[NextTargetRequestProcessor.java](src/NextTargetRequestProcessor.java)
+[TemplateRequestProcessor.java](src/TemplateRequestProcessor.java)
+[UpdateRequestProcessor.java](src/UpdateRequestProcessor.java)
+[VersionsRequestProcessor.java](src/VersionsRequestProcessor.java)
+
 
 ## 実行の流れ
 * `class Knock072.java` で `RequestProcessorFactory`クラスの`createRequestProcessor()`メソッドを実行。
