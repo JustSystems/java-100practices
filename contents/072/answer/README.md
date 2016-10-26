@@ -4,12 +4,20 @@
 # 072：解答例
 ## 問題点
 1. エラーが発生した場合のリクエストコードが設定されていない。
-2. java SE7からswitch文でもString型などの参照型が使用できるようになった。
-このときに内部ではequals()メソッドが使用されているため、安全である。
-ただ、switch()で読み込まれる文字列がnullならNullPointerExceptionが発生してしまうため、
-if-else switchイディオムを使用する必要がある。
-3. MVCモデルにおいて、Controllerにメソッドや処理などのロジックを実装するのは望ましくない。
+2. MVCモデルにおいて、Controllerにメソッドや処理などのロジックを実装するのは望ましくない。
 MVCモデルのデザインパターンに沿ってクラスを作成していく必要がある。
 
-## 実装例
-[ソースコード(Knock072.java)](src/Knock072.java)
+## 各クラスの説明（実装例）
+[Knock072.java](src/Knock072.java) : サーブレットに関する`controllerク`ラス
+[RequestProcessorFactory.java](src/RequestProcessorFactory.java) : `page`文字列比較を行い、各操作を行うクラスのインスタンスを生成する。
+[RequestProcessor.java](src/RequestProcessor.java) : 操作に関するメソッドを1つに纏めたインターフェイス。
+[RequestConstants.java](src/RequestConstants.java) : 操作文字列を定数として管理しているクラス。
+[SeveralProcessor(ディレクトリ)](src/severalProcessor/) : 各操作を実行するクラス群。
+
+## 実行の流れ
+* `class Knock072.java` で `RequestProcessorFactory`クラスの`createRequestProcessor()`メソッドを実行。
+	* `page`の値に関して、望ましい操作を行うクラスのインスタンスを生成。
+	* 生成したインスタンスを`RequestProcessor`インターフェイスの型で取得。  
+* `RequestProcessor`インターフェイスの`process()`メソッドを実行。
+	* 上記で生成したクラスインスタンスの`process()`メソッドを実行。
+

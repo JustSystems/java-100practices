@@ -9,17 +9,26 @@ public class Knock072 extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         // レスポンスにコンテンツタイプをセット
         res.setContentType("application/json; charset=UTF-8");
+        
         String page = req.getParameter("page");
+        RequestProcessor processor = RequestProcessorFactory.createRequestProcessor(page);
         
-        // String型のpage変数をチェックし、各操作を行うクラスを呼び出す. 修正箇所 #1
-        CheckStringValidator pageOperation = new CheckStringValidator();
+        if (processor == null) {
+            res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            
+            logger.log(Level.WARNING, "param error!");
+            res.getWriter().write(
+                        new ErrorJson("param error:" + page).toJson());
+        }
         
-        boolean state = pageOperation.isValidAndProcess(req, res);
-        
-        /* リターンコードの設定. */
-        if (state) {
+        try {
+            // プロセスを実行.
+            processor.process(req, res);
+            
+            // リターンコードの設定.
             res.setStatus(HttpServletResponse.SC_OK);
-        } else {
+        } catch (Exception e) {
+            // リターンコードの設定.
             res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         }
     }
