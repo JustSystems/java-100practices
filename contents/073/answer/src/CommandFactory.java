@@ -6,7 +6,7 @@ import java.util.Date;
  * @author jsfkdt
  */
 public class CommandFactory {
-    private static CommandFactory instance = new CommandFactory();
+    private static final CommandFactory INSTANCE = new CommandFactory();
     
     /**
      * インスタンス化されないための修飾子を付与したコンストラクタ.
@@ -18,7 +18,7 @@ public class CommandFactory {
      * 本クラスのインスタンスを取得する.
      */
     public static CommandFactory getInstance() {
-        return instance;
+        return INSTANCE;
     }
     
     // 日付取得インスタンス 
@@ -31,8 +31,7 @@ public class CommandFactory {
      */
     @SuppressWarnings("unchecked")
     public Command<Date> createCurrentCommand() {
-        Command<Date> date = new CurrentDateCommand();
-        return date;
+        return (Command<Date>) new CurrentDateCommand();
     }
     
     /**
@@ -42,9 +41,6 @@ public class CommandFactory {
      */
     @SuppressWarnings("unchecked")
     public Command<Integer> createRandomIntegerCommand() {
-        Command<Integer> rand = new RandomIntegerCommand();
-        return rand;
+        return (Command<Integer>) new RandomIntegerCommand();
     }
-    
-
 }

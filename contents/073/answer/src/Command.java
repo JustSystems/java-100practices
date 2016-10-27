@@ -39,5 +39,5 @@ public interface Command<T> {
      *
      * @return —áŠO. –¢”­¶‚Ínull.
      */
-    public Exception getException();
+    public Throwable getException();
 }

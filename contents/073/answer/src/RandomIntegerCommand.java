@@ -12,8 +12,6 @@ public class RandomIntegerCommand extends AbstractCommand {
      */
     @Override
     protected Integer executeInner() {
-        Random randomInteger = new Random();
-        int number = 3/0; // ArithmeticException‚ğ”­¶‚³‚¹‚é.
-        return new Integer(randomInteger.nextInt());
+        return new Integer(new Random().nextInt());
     }
 }

@@ -12,7 +12,6 @@ public class CurrentDateCommand extends AbstractCommand {
      */
     @Override
     protected Date executeInner() {
-        Date today = new Date();
-        return today;
+        return new Date();
     }
 }

@@ -11,7 +11,7 @@ public abstract class AbstractCommand<T> implements Command<T> {
     private Status flag = Status.NONE;
     
     /* 例外の初期化. */
-    private Exception error = null;
+    private Throwable error = null;
     
     /* 実行結果の初期化(未実行時の状態). */
     private T result = null;
@@ -35,6 +35,9 @@ public abstract class AbstractCommand<T> implements Command<T> {
             // 共通メソッドの実行(本処理)
             result = executeInner();
             
+            // 成功フラグを設定.
+            flag = Status.SUCCESS;
+            
         } catch (Exception error) {
             // エラーフラグを設定.
             flag = Status.ERROR;
@@ -43,10 +46,20 @@ public abstract class AbstractCommand<T> implements Command<T> {
             // 例外を設定.
             this.error = error;
             return;
+            
+        } finally {
+            
+            /** Errorが発生した場合の処理. */
+            if (flag == Status.EXECUTING) {
+                // エラーフラグを設定.
+                flag = Status.ERROR;
+                // 実行結果をnullに設定.
+                result = null;
+                // Errorクラスの例外を設定.
+                this.error = new Error();
+                return;
+            }
         }
-        
-        // 成功フラグを設定.
-        flag = Status.SUCCESS;
     }
     
     /**
@@ -69,7 +82,7 @@ public abstract class AbstractCommand<T> implements Command<T> {
      * {@inheritDoc}
      */
     @Override
-    public Exception getException() {
+    public Throwable getException() {
         return error;
     }
 }
