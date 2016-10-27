@@ -12,9 +12,9 @@ public class Answer073 {
      */
     public static void main(final String[] args){
         // Dateコマンドを実行
-        output("Date", (Command)CommandFactory.getInstance().createCurrentCommand());
+        output("Date", CommandFactory.getInstance().createCurrentCommand());
         // Randomコマンドを実行
-        output("Random", (Command)CommandFactory.getInstance().createRandomIntegerCommand());
+        output("Random", CommandFactory.getInstance().createRandomIntegerCommand());
     }
     
     public static void output(String commandName, Command command) {

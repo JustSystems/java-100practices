@@ -38,27 +38,20 @@ public abstract class AbstractCommand<T> implements Command<T> {
             // 成功フラグを設定.
             flag = Status.SUCCESS;
             
-        } catch (Exception error) {
+        } catch (Throwable error) {
             // エラーフラグを設定.
             flag = Status.ERROR;
             // 実行結果をnullに設定.
             result = null;
             // 例外を設定.
             this.error = error;
-            return;
             
-        } finally {
-            
-            /** Errorが発生した場合の処理. */
-            if (flag == Status.EXECUTING) {
-                // エラーフラグを設定.
-                flag = Status.ERROR;
-                // 実行結果をnullに設定.
-                result = null;
-                // Errorクラスの例外を設定.
-                this.error = new Error();
-                return;
+            // Errorクラスの例外であればスローする.
+            if (error instanceof Error) {
+                throw error;
             }
+            
+            return;
         }
     }
     
