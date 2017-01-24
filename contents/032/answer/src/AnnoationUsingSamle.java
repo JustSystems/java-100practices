@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
  * @author jsfkdt
  */
 public class AnnoationUsingSamle {
-    
+
     /**
      * 032の解答です.
      * アノテーションを用いて、
@@ -42,7 +42,7 @@ public class AnnoationUsingSamle {
         Field[] fields = user.getClass().getDeclaredFields();
 
         for (Field field : fields) {
-          if (field.isAnnotationPresent(Constraint.class)) {
+            if (field.isAnnotationPresent(Constraint.class)) {
 
                 int number = (int) field.get(user);
 
