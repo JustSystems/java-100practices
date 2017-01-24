@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
  * @author jsfkdt
  */
 public class AnnoationUsingSamle {
-    
+
     /**
      * 032の解答です.
      * アノテーションを用いて、
@@ -15,13 +15,13 @@ public class AnnoationUsingSamle {
      * @param arguments
      */
     public static void main(final String[] args) throws Exception {
-        
-        //配列に値が入っていない場合、強制終了
+
+        // 配列に値が入っていない場合、強制終了
         if (args.length < 1) {
             System.err.println("引数に数値を指定し、再実行して下さい。");
             System.exit(1);
         }
-        
+
         try {
             User user = getUser(Integer.parseInt(args[0]));
             checkUserInfo(user);
@@ -31,7 +31,7 @@ public class AnnoationUsingSamle {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * 引数が3の倍数かどうかを判定する.
      *
@@ -40,18 +40,15 @@ public class AnnoationUsingSamle {
     private static void checkUserInfo(User user) throws Exception {
         // フィールドの取得
         Field[] fields = user.getClass().getDeclaredFields();
-        
+
         for (Field field : fields) {
-            // アノテーションの取得
-            Constraint annotation = field.getAnnotation(Constraint.class);
-            
-            if(annotation != null){
+            if (field.isAnnotationPresent(Constraint.class)) {
+
                 int number = (int) field.get(user);
-                
-                // 3の倍数チェッククラスのインスタンスを生成. 
+
+                // 3の倍数チェッククラスのインスタンスを生成.
                 MultipleThreeValidator checkMultipleThree = new MultipleThreeValidator();
-                
-                
+
                 // 3の倍数かどうかを判定.
                 if(!checkMultipleThree.isValid(number)) {
                     System.err.println("3の倍数ではありません。");
@@ -60,7 +57,7 @@ public class AnnoationUsingSamle {
             }
         }
     }
-    
+
     /**
      * User型のオブジェクトを返却する.
      *
