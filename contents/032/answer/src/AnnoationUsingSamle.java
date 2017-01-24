@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
  * @author jsfkdt
  */
 public class AnnoationUsingSamle {
-
+    
     /**
      * 032の解答です.
      * アノテーションを用いて、
@@ -46,7 +46,7 @@ public class AnnoationUsingSamle {
 
                 int number = (int) field.get(user);
 
-               // 3の倍数チェッククラスのインスタンスを生成.
+                // 3の倍数チェッククラスのインスタンスを生成.
                 MultipleThreeValidator checkMultipleThree = new MultipleThreeValidator();
 
                 // 3の倍数かどうかを判定.
