@@ -1,5 +1,5 @@
 # 解答
-1. 以下のコマンドを実行する
+* 以下のコマンドを実行する
 ```
 $ java -Dhttp.proxyHost=proxy.example.com -Dhttp.proxyPort=80 -Dhttp.http.nonProxyHosts=*.noproxy.example.com Answer001
 ```

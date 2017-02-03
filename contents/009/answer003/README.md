@@ -1,5 +1,5 @@
 # 解答
-1. native2asciiコマンドを使用して、プロパティファイルをASCIIに変換する
+* native2asciiコマンドを使用して、プロパティファイルをASCIIに変換する
 ```
 $ native2ascii -encoding UTF-8 input.properties output.properties
 ```

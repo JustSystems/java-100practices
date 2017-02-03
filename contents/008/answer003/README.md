@@ -1,5 +1,5 @@
 # 解答
-1. 以下のコマンドを実行する
+* 以下のコマンドを実行する
 ```
 $ javap -v Answer008
 Classfile /C:/cygwin64/home/maedata/java_work/contents/008/answer003/Answer008.class
