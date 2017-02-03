@@ -1,7 +1,9 @@
-以下のコマンドを実行する
-$ javac -J-vaersion
+# 解答
+1. 以下のコマンドを実行する
+```
+$ javac -J-version
+```
+-Jオプションでversion表示のオプションを渡す
 
--Jオプションでversion表示のオプションを渡しす
-
-参考
+# 参考
 http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javac.html

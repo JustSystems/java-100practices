@@ -1,4 +1,8 @@
-FileInputStream　で、バイト入力ストリームとしてプロパティファイルを読み込む
-InputStreamReader　で、文字入力ストリームとしてバイト入力ストリームを読み込む
-このとき、文字コードをUTF-8に指定する
-java.util.Properties　の　load(InputStream)　で読み込む
+# 解答
+1. native2asciiコマンドを使用して、プロパティファイルをASCIIに変換する
+```
+$ native2ascii -encoding UTF-8 input.properties output.properties
+```
+
+# 参考
+https://docs.oracle.com/javase/jp/8/docs/technotes/tools/unix/native2ascii.html
