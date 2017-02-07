@@ -1,5 +1,7 @@
 public class Answer019 {
-    // 0から7の整数値をRandomで返す
+    /**
+     * 0から7の整数値をランダムで返す
+     */
     private native int randomNum();
 
     // ライブラリを読み込み

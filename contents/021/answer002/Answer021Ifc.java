@@ -6,6 +6,8 @@ import java.rmi.RemoteException;
  * サーバとクライアントで共有されるインタフェース
  */
 public interface Answer021Ifc extends Remote {
-    // 0から7の整数値をランダムで返す
+    /**
+     * 0から7の整数値をランダムで返す
+     */
     int getRamdomNum() throws RemoteException;
 }

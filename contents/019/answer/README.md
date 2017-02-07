@@ -32,7 +32,7 @@ $ gcc -shared -D__int64='long long' -I "C:\Program Files\Java\jdk1.8.0_121\inclu
 ```
 
 javaファイルにライブラリの読み込み処理を追記し、再コンパイル  
-※libAnswer019.dllへのパスは通っていること
+※libAnswer019.dllがDLL 検索パスに含まれること
 ```java
 static {
     System.loadLibrary("libAnswer019");
