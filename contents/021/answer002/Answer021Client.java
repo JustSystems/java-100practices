@@ -5,6 +5,10 @@ import java.rmi.registry.Registry;
  * クライアント側の処理.
  */
 public class Answer021Client {
+
+    /**
+     * @param arguments リモートレジストリのホスト。指定がなければローカルホストが使用される。
+     */
     public static void main(String[] arguments) {
         String host = (arguments.length < 1) ? null : arguments[0];
 

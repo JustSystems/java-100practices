@@ -1,5 +1,5 @@
 public class Answer019 {
-    // メソッド本体はC言語で実装
+    // 0から7の整数値をRandomで返す
     private native int randomNum();
 
     // ライブラリを読み込み

@@ -28,10 +28,11 @@ Answer019.hが作成される
 
 cファイルをコンパイルして共有ライブラリを作成
 ```
-$ gcc -shared -D__int64='long long' -I "C:\Program Files\Java\jdk1.8.0_121/include" -I "C:\Program Files\Java\jdk1.8.0_121/include/win32/" Answer019.c -o libAnswer019.dll
+$ gcc -shared -D__int64='long long' -I "C:\Program Files\Java\jdk1.8.0_121\include" -I "C:\Program Files\Java\jdk1.8.0_121\include\win32\" Answer019.c -o libAnswer019.dll
 ```
 
-javaファイルにライブラリの読み込み処理を追記し、再コンパイル
+javaファイルにライブラリの読み込み処理を追記し、再コンパイル  
+※libAnswer019.dllへのパスは通っていること
 ```java
 static {
     System.loadLibrary("libAnswer019");

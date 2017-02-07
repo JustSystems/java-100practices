@@ -14,6 +14,7 @@ public class Answer021Server implements Answer021Ifc {
         try {
             // リモートオブジェクトを作成し、Java RMIランタイムへエクスポート
             Answer021Server obj = new Answer021Server();
+            // portに0を指定すると、portは自動割り当てされる
             Answer021Ifc stub = (Answer021Ifc) UnicastRemoteObject.exportObject(obj, 0);
             // リモートオブジェクトレジストリに指定した名前でバインドする
             Registry registry = LocateRegistry.getRegistry();
