@@ -12,44 +12,49 @@ public class Answer030 {
      * また、その前後でオブジェクトの変数値が一致していることを確認する。
      */
     public static void main(String arguments[]) {
+        ObjectOutputStream oos = null;
+        ObjectInputStream ois = null;
+
         try {
             // シリアライズ可能なクラスのオブジェクト
             SerializableClass before = new SerializableClass();
+            before.setId(123);
+            before.setName("hogehoge");
 
-            // "t.tmp"ファイルに書き込むためのFileOutputStreamを作成
-            FileOutputStream fos = new FileOutputStream("t.tmp");
             //　"t.tmp"ファイルに書き込むObjectOutputStreamを作成
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos = new ObjectOutputStream(new FileOutputStream("t.tmp"));
             // ファイルへ書き込む
             oos.writeObject(before);
-            oos.close();
 
-            // "t.tmp"ファイルを開くFileInputStreamを作成
-            FileInputStream fis = new FileInputStream("t.tmp");
             // "t.tmp"ファイルから読み込むObjectInputStreamを作成
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            ois = new ObjectInputStream(new FileInputStream("t.tmp"));
             // SerializableClassのオブジェクトとして読み込む
             SerializableClass after = (SerializableClass) ois.readObject();
-            ois.close();
 
             if (before.getId() == after.getId()) {
-                System.out.println("id matched");
+                System.out.println("id matched : " + before.getId() + " = " + after.getId());
             }
             if (before.getName().equals(after.getName())) {
-                System.out.println("name matched");
+                System.out.println("name matched : " + before.getName() + " = " + after.getName());
             }
-        }
-        // ファイルが存在せず作成もできない場合
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
+            // ファイルが存在せず作成もできない場合
             e.printStackTrace();
-        }
-        // 入出力エラーが発生した場合
-        catch (IOException e) {
+        } catch (IOException e) {
+            // 入出力エラーが発生した場合
             e.printStackTrace();
-        }
-        // 直列化されたオブジェクトのクラスが見つからなかった場合
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
+            // 直列化されたオブジェクトのクラスが見つからなかった場合
             e.printStackTrace();
+        } finally {
+            if (oos != null && ois != null) {
+                try {
+                    oos.close();
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

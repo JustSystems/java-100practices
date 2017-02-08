@@ -1,5 +1,5 @@
 # 解答
-"2"が出力される
+"1"が出力される
 
 以下の行でKnock027AクラスのgetValue()にはprivateがついているため、Knock026Bには継承されない
 ```java
@@ -7,7 +7,7 @@ private int getValue() {
     return 1;
 }
 ```
-よって、Knock027BクラスのgetValue()が呼び出される
+よって、Knock027AクラスのprivateメソッドのgetValue()が呼び出される
 
 
 # 参考
