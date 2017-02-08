@@ -12,22 +12,17 @@ public class Answer030 {
      * また、その前後でオブジェクトの変数値が一致していることを確認する。
      */
     public static void main(String arguments[]) {
-        ObjectOutputStream oos = null;
-        ObjectInputStream ois = null;
-
-        try {
+        // "t.tmp"ファイルに書き込むObjectOutputStreamを作成
+        // "t.tmp"ファイルから読み込むObjectInputStreamを作成
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("t.tmp"));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("t.tmp"))) {
             // シリアライズ可能なクラスのオブジェクト
             SerializableClass before = new SerializableClass();
             before.setId(123);
             before.setName("hogehoge");
 
-            //　"t.tmp"ファイルに書き込むObjectOutputStreamを作成
-            oos = new ObjectOutputStream(new FileOutputStream("t.tmp"));
             // ファイルへ書き込む
             oos.writeObject(before);
-
-            // "t.tmp"ファイルから読み込むObjectInputStreamを作成
-            ois = new ObjectInputStream(new FileInputStream("t.tmp"));
             // SerializableClassのオブジェクトとして読み込む
             SerializableClass after = (SerializableClass) ois.readObject();
 
@@ -46,15 +41,6 @@ public class Answer030 {
         } catch (ClassNotFoundException e) {
             // 直列化されたオブジェクトのクラスが見つからなかった場合
             e.printStackTrace();
-        } finally {
-            if (oos != null && ois != null) {
-                try {
-                    oos.close();
-                    ois.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
