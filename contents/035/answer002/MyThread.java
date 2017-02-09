@@ -12,7 +12,7 @@ public class MyThread extends Thread {
     public void run() {
         try {
             Random rnd = new Random();
-            sleep((rnd.nextInt(6) + 1) * 1000);
+            sleep((rnd.nextInt(5) + 1) * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

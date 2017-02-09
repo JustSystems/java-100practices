@@ -1,4 +1,6 @@
 import java.lang.reflect.Field;
+import java.lang.NoSuchFieldException;
+import java.lang.IllegalAccessException;
 
 public class Answer032 {
     /**
@@ -6,7 +8,7 @@ public class Answer032 {
      * @param String arguments[] 第1引数に数値を入力
      */
     public static void main(String arguments[]) {
-        Number argNum = new Number();
+        MyNumber argNum = new MyNumber();
 
         if (arguments.length >= 1) {
             try {
@@ -17,11 +19,7 @@ public class Answer032 {
                 } else {
                     System.out.println("3で割り切れない値が入力されました");
                 }
-            } catch (NumberFormatException e) {
-                // 第1引数が数値以外の場合
-                e.printStackTrace();
-            } catch (Exception e) {
-                // @IsDivisibleByThreeが付与されているフィールドがない場合
+            } catch (NumberFormatException | MalformedClassException | NoSuchFieldException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
@@ -30,14 +28,17 @@ public class Answer032 {
     /**
      * @IsDivisibleByThreeを付与したフィールドの値が3で割り切れる値であることを判定する.
      * @param Number number @IsDivisibleByThreeを付与したフィールドを持つクラスのオブジェクト
-     * @throws Exception @IsDivisibleByThreeを付与したフィールドがない場合
+     * @throws MalformedClassException @IsDivisibleByThreeを付与したフィールドがない場合
+     * @throws NoSuchFieldException フィールドが見つからない場合
+     * @throws IllegalAccessException フィールドにアクセスできない場合
      * @return 値が3で割り切れる場合はtrueを返す。3で割り切れない場合はfalseを返す。
      */
-    private static boolean isDivisibleNumberByThree (Number number) throws Exception {
+    private static boolean isDivisibleNumberByThree (MyNumber number)
+        throws MalformedClassException, NoSuchFieldException, IllegalAccessException {
         Field field = number.getClass().getDeclaredField("num");
         // fieldに@IsDivisibleByThreeが付与されている場合
-        if (field.getAnnotation(IsDivisibleByThree.class) == null){
-            throw new Exception("@IsDivisibleByThreeが付与されているフィールドがありません");
+        if (field.getAnnotation(IsDivisibleByThree.class) == null) {
+            throw new MalformedClassException("@IsDivisibleByThreeが付与されているフィールドがありません");
         }
 
         int fieldNum = (int) field.get(number);

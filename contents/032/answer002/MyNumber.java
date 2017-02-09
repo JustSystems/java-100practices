@@ -1,7 +1,7 @@
 /**
  * @IsDivisibleByThreeを付与したフィールドを持つクラス
  */
-public class Number {
+public class MyNumber {
     @IsDivisibleByThree
     int num;
 }
