@@ -10,9 +10,11 @@ public class SumThread extends Thread {
         synchronized (Answer041.lock) {
             System.out.println("sum loop start");
             for (int i = 1; i < LOOP_NUM + 1; i++) {
-                Answer041.addNum(i);
+                GlobalNum.addNum(i);
             }
             System.out.println("sum loop end");
+            // 値への加算処理が完了したことを設定する
+            GlobalNum.setIsCalculated(true);
             // ロックオブジェクトに対してwait()している他のスレッド1つを再開する
             Answer041.lock.notify();
         }
