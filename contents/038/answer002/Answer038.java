@@ -12,17 +12,11 @@ public class Answer038 {
         // 第1引数がなければUsageを表示して終了
         if (arguments.length < 1) {
             System.out.println("Usage: Please input one argument.");
-            exit(2);
+            System.exit(2);
         }
 
         ResourceBundle rb = null;
-
-        if (Locale.JAPAN.equals(Locale.getDefault())) {
-            rb = ResourceBundle.getBundle("messageAscii", Locale.JAPAN);
-        } else {
-            // ロケールが日本以外の場合は、英語でメッセージを表示
-            rb = ResourceBundle.getBundle("messageAscii", Locale.ENGLISH);
-        }
+        rb = ResourceBundle.getBundle("messageAscii");
 
         System.out.println(MessageFormat.format(rb.getString("error"), arguments[0]));
     }

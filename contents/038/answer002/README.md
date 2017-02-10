@@ -1,13 +1,23 @@
 # 解答
-日本語用と英語用の2つのメッセージ用プロパティファイルを作成し、以下のコマンドでエンコードしておく  
+日本語用とデフォルト用の2つのメッセージ用プロパティファイルを作成し、以下のコマンドでエンコードしておく  
 日本語用のファイルは、`基底名_ja.properties`とする  
-英語用のファイルは、`基底名_en.properties`とする
+デフォルト用のファイルは、`基底名.properties`とする
 ```
 $ native2ascii -encoding UTF-8 message_ja.properties messageAscii_ja.properties
-$ native2ascii -encoding UTF-8 message_en.properties messageAscii_en.properties
+$ native2ascii -encoding UTF-8 message.properties messageAscii.properties
 ```
 
-`Locale.getDefault()`で取得したロケールが日本のものか否かを判定し、`ResourceBundle.getBundle()`メソッドで指定のロケールのプロパティファイルを使用する
+```java
+ResourceBundle.getBundle(String baseName);
+```
+は、以下と同じである
+```java
+ResourceBundle.getBundle(baseName, Locale.getDefault(), this.getClass().getClassLoader())
+```
+よって、以下のように書くことで、デフォルトのロケールで対応したプロパティファイルを呼び出して使うことができる。
+```java
+ResourceBundle.getBundle("messageAscii");
+```
 
 # 参考
 https://docs.oracle.com/javase/jp/8/docs/technotes/guides/intl/index.html  
