@@ -20,18 +20,25 @@ public class GlobalNum {
     }
 
     /**
-     * 値に対する計算が行われたか否かフラグを変更する.
-     * @param boolean bool 計算を実施した状態とする場合はtrue、そうでない場合はfalseを設定する。
+     * 値に対する計算が行われた状態にフラグに変更する.
      */
-    public static void setIsCalculated(boolean bool) {
-        isCalculated = bool;
+    public static void doneCalculation() {
+        isCalculated = true;
+    }
+    /**
+     * 値に対する計算が行われていない状態にフラグに変更する.
+     * 合わせて変数numを計算前の初期値0に変更する
+     */
+    public static void clearCalculation() {
+        isCalculated = false;
+        num = 0;
     }
 
     /**
-     * 値に対する計算が行われたか否かフラグを返す.
+     * 値に対する計算が行われたか否かのフラグを返す.
      * @return 計算を実施した状態とする場合はtrue、そうでない場合はfalseとする。
      */
-    public static boolean getIsCalculated() {
+    public static boolean isCalculated() {
         return isCalculated;
     }
 }

@@ -8,6 +8,9 @@ public class Answer041 {
         // グローバル変数の値を出力する処理を実行するスレッド
         Thread threadB = new ShowThread();
 
+        // グローバル変数への加算処理を初期化
+        GlobalNum.clearCalculation();
+
         threadB.start();
         threadA.start();
     }

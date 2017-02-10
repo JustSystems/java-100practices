@@ -8,7 +8,7 @@ public class ShowThread extends Thread {
             try {
                 // グローバル変数への加算処理が完了しているかを確認する
                 // 完了していない場合はwait()を呼び、加算処理の完了後notify()が呼ばれるのを待つ
-                if (!GlobalNum.getIsCalculated()) {
+                if (!GlobalNum.getCalculated()) {
                     System.out.println("wait start");
                     Answer041.lock.wait();
                     System.out.println("wait end");

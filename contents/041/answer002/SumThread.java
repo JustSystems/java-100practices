@@ -14,7 +14,7 @@ public class SumThread extends Thread {
             }
             System.out.println("sum loop end");
             // 値への加算処理が完了したことを設定する
-            GlobalNum.setIsCalculated(true);
+            GlobalNum.doneCalculation();
             // ロックオブジェクトに対してwait()している他のスレッド1つを再開する
             Answer041.lock.notify();
         }
