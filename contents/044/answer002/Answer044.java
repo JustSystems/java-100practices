@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class Answer044 implements Comparable<Answer044> {
     // Date型のインスタンス変数
-    Date date;
+    private Date date;
 
     /**
      * 引数なしで作成された場合は、dateを現在日時とする
@@ -49,6 +49,7 @@ public class Answer044 implements Comparable<Answer044> {
      * @return このオブジェクトのdateが比較対象のdateと等しい場合は0。このオブジェクトのdateの方が前の場合は0より小さい値。このオブジェクトのdateの方が後の場合は0より大きい値。
      * @throws NullPointerException 比較対象のオブジェクトがnullの場合。または、このオブジェクトか比較対象のオブジェクトのdateがnullの場合。
      */
+    @Override
     public int compareTo(Answer044 target) throws NullPointerException {
         if (target == null || this.date == null || target.date == null) {
             throw new NullPointerException();

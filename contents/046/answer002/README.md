@@ -4,7 +4,7 @@ false : true : true
 true : true : true  
 
 ### `printDifference(s1, s3)`について
-`(a == b)` -> 文字列リテラルは、Stringクラスのインスタンスへの参照となるためtrue  
+`(a == b)` -> 文字列リテラルは、同じ値のインスタンスを参照する（intern()と同じ動きをする）ためtrue  
 `a.equals(b)` -> 値は"hoge"で一致するためtrue  
 `((a.hashCode() == b.hashCode()))` -> `equals()`がtrueなのでtrue  
 
@@ -18,7 +18,7 @@ true : true : true
 ```java
 String s4 = new String(s1).intern();
 ```
-が呼ばれたとき、s1と同じ値のオブジェクトがプールに追加され、その参照が返される。  
+が呼ばれたとき、s1と同じ値のオブジェクトがプールに存在するため、その参照が返される。  
 `a.equals(b)` -> 値は"hoge"で一致するためtrue  
 `((a.hashCode() == b.hashCode()))` -> `equals()`がtrueなのでtrue  
 
