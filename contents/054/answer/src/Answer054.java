@@ -1,20 +1,20 @@
 import java.util.stream.IntStream;
 /**
- * 054ã®è§£ç­”ã§ã™.
+ * 054‚Ì‰ğ“š‚Å‚·.
  *
  * @author jsfkdt
  */
 public class Answer054 {
     /**
-     * 054ã®è§£ç­”ã§ã™.
-     * java.util.streamã®APIã‚’ç”¨ã„ã¦ã€
-     * 1ã‹ã‚‰100ã¾ã§ã®æ•´æ•°ã«å«ã¾ã‚Œã‚‹å¶æ•°ã ã‘ã‚’åŠ ç®—ã—ãŸçµæœã‚’æ±‚ã‚ã‚‹.
+     * 054‚Ì‰ğ“š‚Å‚·.
+     * java.util.stream‚ÌAPI‚ğ—p‚¢‚ÄA
+     * 1‚©‚ç100‚Ü‚Å‚Ì®”‚ÉŠÜ‚Ü‚ê‚é‹ô”‚¾‚¯‚ğ‰ÁZ‚µ‚½Œ‹‰Ê‚ğ‹‚ß‚é.
      *
-     * @param arguments ä½¿ç”¨ã—ã¾ã›ã‚“.
+     * @param arguments g—p‚µ‚Ü‚¹‚ñ.
      */
     public static void main(final String[] args) {
-        
-        /* IntStreamã‚’ç”¨ã„ã¦ã€1ï½100ã®ã†ã¡å¶æ•°ã ã‘ã‚’æŠ½å‡ºã—ã€åˆè¨ˆã‚’æ¨™æº–å‡ºåŠ›. */
+
+        /* IntStream‚ğ—p‚¢‚ÄA1`100‚Ì‚¤‚¿‹ô”‚¾‚¯‚ğ’Šo‚µA‡Œv‚ğ•W€o—Í. */
         System.out.println(IntStream.rangeClosed(1, 100).filter(x -> x % 2 == 0).sum());
     }
 }
