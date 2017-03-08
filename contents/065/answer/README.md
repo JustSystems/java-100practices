@@ -27,7 +27,7 @@ public class Knock065 {
     
     public void insertSpotData(List<Model> list) {
         // 修正箇所. #2
-        if (list == null && list.isEmpty()) {
+        if (list == null || list.isEmpty()) {
             return;
         }
         
