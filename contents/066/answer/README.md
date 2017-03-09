@@ -17,14 +17,14 @@ public class Knock066 {
     private Knock066() {};
 
     public static String convertToString(List<Model> modelList) {
-        // modelListがnullでないことを保証. #1
-        if (modelList == null) {
-            return result;
-        }
-        
         //String result = "";
         StringBuilder result = new StringBuilder(); // 修正箇所. #4
-        
+
+        // modelListがnullでないことを保証. #1
+        if (modelList == null) {
+            return result.toString();
+        }
+               
         for (Model model : modelList) {
             // Modelオブジェクトがnullの場合はスキップ. #2
             if (model != null) {
